@@ -23,7 +23,7 @@ class export_partner_with_file(models.TransientModel):
 
         worksheet = workbook.add_sheet('Contacts')
 
-        headers = ['id','Name','Company Name','Salesperson','Pricelist','Payment Terms', 'Sales Agent Name', 'Sales Commission Percentage']
+        headers = ['id','Name','Company Name','Salesperson','Pricelist','Customer Payment Terms', 'Supplier Payment Terms', 'Sales Agent Name', 'Sales Commission Percentage']
 
         partner_xml_ids = dict(self.__ensure_xml_id_custom(partners))
 
@@ -51,6 +51,8 @@ class export_partner_with_file(models.TransientModel):
             worksheet.write(row_index, i, partner.property_product_pricelist.name or '')
             i +=1
             worksheet.write(row_index, i, partner.property_payment_term_id.name or '')
+            i +=1
+            worksheet.write(row_index, i, partner.property_supplier_payment_term_id.name or '')
             i +=1
             worksheet.write(row_index, i, partner.sale_agent_id.name or '')
             i +=1
